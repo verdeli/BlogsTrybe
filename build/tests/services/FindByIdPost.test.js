@@ -16,25 +16,23 @@ const chai_1 = require("chai");
 const sequelize_1 = require("sequelize");
 const mocha_1 = require("mocha");
 const sinon_1 = __importDefault(require("sinon"));
-const PostModel_1 = __importDefault(require("../../src/database/models/PostModel"));
-const PostService_1 = __importDefault(require("../../src/api/services/PostService"));
+const PostModel_1 = __importDefault(require("../../database/models/PostModel"));
+const PostService_1 = __importDefault(require("../../api/services/PostService"));
 describe('Testes de serviço: FindById Post', function () {
-    return __awaiter(this, void 0, void 0, function* () {
-        (0, mocha_1.afterEach)(function () {
-            sinon_1.default.restore();
-        });
-        it('Caso 1: Deve selecionar um Post', function () {
-            return __awaiter(this, void 0, void 0, function* () {
-                const outputMock = new PostModel_1.default({
-                    id: 1,
-                    title: 'TipeScript na prática',
-                    content: 'TipeScript é uma ferramenta para ajudar no POO',
-                });
-                sinon_1.default.stub(sequelize_1.Model, 'findByPk').resolves(outputMock);
-                const service = new PostService_1.default();
-                const result = yield service.findById(1);
-                (0, chai_1.expect)(result).to.be.equal(outputMock);
+    (0, mocha_1.afterEach)(function () {
+        sinon_1.default.restore();
+    });
+    it('Caso 1: Deve selecionar um Post', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const outputMock = new PostModel_1.default({
+                id: 1,
+                title: 'TipeScript na prática',
+                content: 'TipeScript é uma ferramenta para ajudar no POO',
             });
+            sinon_1.default.stub(sequelize_1.Model, 'findByPk').resolves(outputMock);
+            const service = new PostService_1.default();
+            const result = yield service.findById(1);
+            (0, chai_1.expect)(result).to.be.equal(outputMock);
         });
     });
 });

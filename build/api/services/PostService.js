@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const PostModel_1 = __importDefault(require("../../database/models/PostModel"));
 class PostService {
     constructor() {
-        this.model = PostModel_1.default;
+        this.model = PostModel_1.default; // modelStatic(type do sequelize) é a represetação das tabelas do db. Aqui esta inicializando a model.
     }
     create(dto) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.create(Object.assign({}, dto));
+            return yield this.model.create(Object.assign({}, dto));
         });
     }
     readAll() {
@@ -32,11 +32,21 @@ class PostService {
             return yield this.model.findByPk(id);
         });
     }
-    updateById(id) {
-        throw new Error("Method not implemented.");
+    updateById(id, dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const post = this.model.findByPk(id);
+            if (!post) {
+                throw new Error("Id não existe.");
+            }
+            yield this.model.update(Object.assign({}, dto), { where: { id } });
+            const updated = this.model.findByPk(id);
+            return updated;
+        });
     }
     deleteById(id) {
-        throw new Error("Method not implemented.");
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error("Method not implemented.");
+        });
     }
 }
 exports.default = PostService;

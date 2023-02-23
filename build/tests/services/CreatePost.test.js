@@ -16,8 +16,8 @@ const chai_1 = require("chai");
 const mocha_1 = require("mocha");
 const sequelize_1 = require("sequelize");
 const sinon_1 = __importDefault(require("sinon"));
-const PostService_1 = __importDefault(require("../../src/api/services/PostService"));
-const PostModel_1 = __importDefault(require("../../src/database/models/PostModel"));
+const PostService_1 = __importDefault(require("../../api/services/PostService"));
+const PostModel_1 = __importDefault(require("../../database/models/PostModel"));
 describe('Testes de serviço: Create Post', function () {
     (0, mocha_1.afterEach)(function () {
         sinon_1.default.restore();
