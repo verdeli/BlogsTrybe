@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { afterEach } from "mocha"
+import { afterEach } from "mocha";
 import { Model } from "sequelize";
 import Sinon from "sinon";
 import IPost from "../../src/api/interfaces/IPost";
