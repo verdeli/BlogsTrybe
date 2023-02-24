@@ -23,7 +23,7 @@ export default class PostService implements IServicePost {
   }
 
   async updateById(id: number, dto: IPost): Promise<Post> {
-    const post = this.model.findByPk(id);
+    const post = await this.model.findByPk(id);
     if (!post) {
       throw new Error("Id não existe.");
     }
